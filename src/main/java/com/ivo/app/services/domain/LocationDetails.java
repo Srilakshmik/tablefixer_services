@@ -13,8 +13,8 @@ public class LocationDetails implements Serializable {
     private String country;
     private String zip;
     private String state;
-    private String longitude;
-    private String latitude;
+    private Float longitude;
+    private Float latitude;
 
     public String getLocName() {
         return locName;
@@ -39,20 +39,20 @@ public class LocationDetails implements Serializable {
     public void setLocationTypeId(Integer locationTypeId) {
         this.locationTypeId = locationTypeId;
     }
-
-    public String getLongitude() {
+  
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 

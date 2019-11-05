@@ -1,11 +1,9 @@
 package com.ivo.app.services.controller;
 
-import com.ivo.app.services.domain.LocationSearchRequest;
 import com.ivo.app.services.domain.LocationSearchResponse;
 import com.ivo.app.services.entity.UserFavoriteLocationsXref;
 import com.ivo.app.services.request.FavoriteLocationRequest;
 import com.ivo.app.services.service.FavoriteLocationService;
-import com.ivo.app.services.service.LocationSearchService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,7 @@ public class FavoriteLocationController {
 	@PostMapping(value="/v1/favorite/{userUUID}/create/{locationUUID}")
 	public ResponseEntity<UserFavoriteLocationsXref> createUserFavoriteLocation(@PathVariable(value="userUUID") String userUUID, @PathVariable(value="locationUUID") String locationUUID) throws URISyntaxException{
 
-		logger.info("userUUID:"+userUUID+",locationUUID:"+locationUUID);
+    		logger.info("userUUID:"+userUUID+",locationUUID:"+locationUUID);
         UserFavoriteLocationsXref userFavoriteLocationsXref = favoriteLocationService.createUserFavoriteLocation(userUUID, locationUUID);
         return ResponseEntity.created(new URI("/v1/favorite/userUUID/create/locationUUID")).body(userFavoriteLocationsXref);
 	}
@@ -38,6 +36,7 @@ public class FavoriteLocationController {
     public ResponseEntity<Object> deleteUserFavoriteLocation(@PathVariable(value = "userUUID") String userUUID, @PathVariable(value = "locationUUID") String locationUUID) {
 
 		logger.info("userUUID:"+userUUID+",locationUUID:"+locationUUID);
+
         long numOfRowsDeleted = favoriteLocationService.deleteUserFavoriteLocation(userUUID, locationUUID);
 		logger.info(" deleted rows #"+numOfRowsDeleted);
 		return ResponseEntity.noContent().build();
@@ -45,10 +44,10 @@ public class FavoriteLocationController {
 
 	
 	@PostMapping(value="v1/favorite/list/{userUUID}")
-	public  ResponseEntity<List<LocationSearchResponse>> getUserFavoriteLocation(@PathVariable(value="userUUID") String userUUID, @RequestBody  @Valid FavoriteLocationRequest favoriteLocationRequest, @RequestParam Integer start, @RequestParam  Integer limit){
+    public ResponseEntity<List<LocationSearchResponse>> getUserFavoriteLocation(@PathVariable(value = "userUUID") String userUUID, @RequestBody @Valid FavoriteLocationRequest favoriteLocationRequest, @RequestParam Integer pageNumber, @RequestParam Integer pageSize) {
 
 		logger.info("Getting list of favorite restaurants by userUUID:"+userUUID);
-		Pageable pageable = PageRequest.of(start, limit);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
 		List<LocationSearchResponse> userFavoriteLocations=favoriteLocationService.getUserFavoriteLocation(userUUID,favoriteLocationRequest, pageable);
 		logger.info(" User Favorite locations list size #"+userFavoriteLocations.size());
 		return ResponseEntity.ok().body(userFavoriteLocations);

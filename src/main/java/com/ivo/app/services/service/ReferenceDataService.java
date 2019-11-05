@@ -1,20 +1,21 @@
 package com.ivo.app.services.service;
 
-import com.ivo.app.services.domain.Cuisine;
-import com.ivo.app.services.domain.EventGenderPref;
-import com.ivo.app.services.domain.EventPurpose;
-import com.ivo.app.services.domain.PayPrefResponse;
+import com.ivo.app.services.entity.Cuisine;
+import com.ivo.app.services.entity.EventPayPrefRef;
+import com.ivo.app.services.entity.EventPurposeRef;
+import com.ivo.app.services.entity.GenderCatgRef;
 
 import java.util.List;
 
 public interface ReferenceDataService {
 
-	List<PayPrefResponse> getAllGuestPayPreferences();
+    List<EventPayPrefRef> getAllGuestPayPreferences();
 
-	List<EventGenderPref> getAllEventGenderPreferences();
+    List<GenderCatgRef> getAllEventGenderPreferences();
 
-	List<EventPurpose> getAllEventPurposes();
+    List<EventPurposeRef> getAllEventPurposes();
 
     List<Cuisine> getCuisinesList();
 
+    List<GenderCatgRef> getAllGendersList();
 }

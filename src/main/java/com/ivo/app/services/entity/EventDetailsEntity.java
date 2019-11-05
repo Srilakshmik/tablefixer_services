@@ -37,7 +37,7 @@ public class EventDetailsEntity {
     @Column(name = "event_lang")
     private Float eventLongitude;
     @Column(name = "event_lat")
-    private Float event_latitude;
+    private Float eventLatitude;
     @Column(name = "is_private")
     private Boolean isPrivate;
     @Column(name = "max_guests_allowed")
@@ -66,8 +66,8 @@ public class EventDetailsEntity {
     private Boolean isEventLocked;
     @Column(name = "is_event_confirmed")
     private Boolean isEventConfirmed;
-    @Column(name = "event_notes_by_organizer")
-    private String eventNotesByOrganizer;
+    @Column(name = "event_desc")
+    private String eventDesc;
     @Column(name = "event_closing_remarks")
     private String eventClosingRemarks;
     @Column(name = "event_short_desc")
@@ -190,12 +190,12 @@ public class EventDetailsEntity {
         this.eventLongitude = eventLongitude;
     }
 
-    public Float getEvent_latitude() {
-        return event_latitude;
+    public Float getEventLatitude() {
+        return eventLatitude;
     }
 
-    public void setEvent_latitude(Float event_latitude) {
-        this.event_latitude = event_latitude;
+    public void setEventLatitude(Float eventLatitude) {
+        this.eventLatitude = eventLatitude;
     }
 
     public Boolean getPrivate() {
@@ -310,12 +310,12 @@ public class EventDetailsEntity {
         isEventConfirmed = eventConfirmed;
     }
 
-    public String getEventNotesByOrganizer() {
-        return eventNotesByOrganizer;
+    public String getEventDesc() {
+        return eventDesc;
     }
 
-    public void setEventNotesByOrganizer(String eventNotesByOrganizer) {
-        this.eventNotesByOrganizer = eventNotesByOrganizer;
+    public void setEventDesc(String eventDesc) {
+        this.eventDesc = eventDesc;
     }
 
     public String getEventClosingRemarks() {

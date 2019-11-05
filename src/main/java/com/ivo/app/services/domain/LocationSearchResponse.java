@@ -1,6 +1,7 @@
 package com.ivo.app.services.domain;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class LocationSearchResponse extends Address implements Serializable{
 	

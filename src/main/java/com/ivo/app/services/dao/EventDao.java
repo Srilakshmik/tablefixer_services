@@ -1,14 +1,16 @@
 package com.ivo.app.services.dao;
 
-import com.ivo.app.services.domain.EventDetailRequest;
+import com.ivo.app.services.domain.UpdateEventRequest;
+
 
 import java.time.LocalDateTime;
 
 public interface EventDao {
 
-    int updateEvent(EventDetailRequest event, String userUUID);
+    int updateEvent(UpdateEventRequest event, String userUUID);
 
-    boolean isEventConflictingAnyOtherExistingEvent(LocalDateTime eventStartTime, LocalDateTime localDateTime, String userUUID);
+    boolean isEventConflictingAnyOtherExistingEvent(LocalDateTime eventStartTime, LocalDateTime localDateTime, String userUUID, String eventUUID);
 
-    boolean isEventWithinUserDailyEventsLimit(String userUUID, LocalDateTime eventStartTime);
+    Integer getUserEventsCountByDate(String userUUID, LocalDateTime eventStartTime,String eventUUID);
+
 }

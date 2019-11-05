@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import java.util.List;
 
 @Service
@@ -45,9 +46,9 @@ public class FavoriteLocationServiceImpl implements FavoriteLocationService {
 	@Override
 	public List<LocationSearchResponse> getUserFavoriteLocation(String userUUID, FavoriteLocationRequest favoriteLocationRequest, Pageable pageable) {
 
-		if(!StringUtils.isEmpty(favoriteLocationRequest.getLongitude()) && !StringUtils.isEmpty(favoriteLocationRequest.getLatitude()) ) {
+        if (!StringUtils.isEmpty(favoriteLocationRequest.getFromLongitude()) && !StringUtils.isEmpty(favoriteLocationRequest.getFromLatitude())) {
 			return favoriteLocationDao.getUserFavoriteLocation(userUUID,  favoriteLocationRequest, LocationSearchConstants.GEO_COORDINATES,pageable);
-		}else if (!StringUtils.isEmpty(favoriteLocationRequest.getUserBookMarkLocationType())) {
+        } else if (!StringUtils.isEmpty(favoriteLocationRequest.getFromUserBookMarkLocationType())) {
 			return favoriteLocationDao.getUserFavoriteLocation(userUUID,  favoriteLocationRequest, LocationSearchConstants.USER_LOCATIONS,pageable);
 		}else {
             return favoriteLocationDao.getUserFavoriteLocation(userUUID,  favoriteLocationRequest, null,pageable);

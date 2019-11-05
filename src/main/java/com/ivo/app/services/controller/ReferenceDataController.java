@@ -1,9 +1,9 @@
 package com.ivo.app.services.controller;
 
-import com.ivo.app.services.domain.Cuisine;
-import com.ivo.app.services.domain.EventGenderPref;
-import com.ivo.app.services.domain.EventPurpose;
-import com.ivo.app.services.domain.PayPrefResponse;
+import com.ivo.app.services.entity.Cuisine;
+import com.ivo.app.services.entity.EventPayPrefRef;
+import com.ivo.app.services.entity.EventPurposeRef;
+import com.ivo.app.services.entity.GenderCatgRef;
 import com.ivo.app.services.service.ReferenceDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +18,24 @@ public class ReferenceDataController {
 	
 	@Autowired
 	private ReferenceDataService referenceDataService;
-	
-	@GetMapping(value="/guests/paypref/list")
-	public List<PayPrefResponse> getAllGuestPayPreferences(){
+
+	@GetMapping(value = "/event/guests/paypref/list")
+    public List<EventPayPrefRef> getAllGuestPayPreferences() {
 		return referenceDataService.getAllGuestPayPreferences();
 	}
-	
-	@GetMapping(value="/guests/genderpref/list")
-	public List<EventGenderPref> getAllEventGenderPreferences(){
+
+    @GetMapping(value = "/event/genders/catg/list")
+    public List<GenderCatgRef> getAllEventGenderPreferences() {
 		return referenceDataService.getAllEventGenderPreferences();
 	}
-	
+
+    @GetMapping(value = "/genders/list")
+	public List<GenderCatgRef> getGendersList() {
+        return referenceDataService.getAllGendersList();
+    }
+
 	@GetMapping(value="/eventspurpose/list")
-	public List<EventPurpose> getAllEventPurposes(){
+    public List<EventPurposeRef> getAllEventPurposes() {
 		return referenceDataService.getAllEventPurposes();
 	}
 	

@@ -2,7 +2,6 @@ package com.ivo.app.services.util;
 
 public interface LocationSearchConstants {
 
-
     String GEO_COORDINATES = "GEO_COORDINATES";
 
     String USER_LOCATIONS = "USER_LOCATIONS";
@@ -71,7 +70,7 @@ String QUERY_USER_FAVORITE_LOCATIONS_BY_BOOK_MARKED_COORDINATES = "select loc.lo
         " from  location_info_ref loc, user_info_ref usr, user_locations_xref userloc , user_favorite_locations_xref favorite "+
         " where "+
         " favorite.user_uuid=usr.user_uuid "+
-        " and favorite.location_uuid=loc.loc_uuid "+
+		" and favorite.location_uuid=loc.loc_uuid  and userloc.user_uuid=favorite.user_uuid" +
         " and usr.user_uuid=:userUuid "+
         " and upper(userloc.user_location_name)=:userLocationType "+
         " and ST_DistanceSphere(ST_MakePoint(userloc.longitude,userloc.latitude), "+
@@ -81,7 +80,7 @@ String QUERY_USER_FAVORITE_LOCATIONS_BY_BOOK_MARKED_COORDINATES = "select loc.lo
 
 
 String QUERY_GENERIC_ADDRESS_SEARCH = "select  name,county,state,zip_codes,longitude,latitude " +
+
 			" from us_cities " +
 			" where upper(name) like upper(:searchKey)  or upper(county) like upper(:searchKey) or zip_codes like :searchKey";
-
 }

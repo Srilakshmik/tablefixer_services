@@ -26,7 +26,8 @@ public class UserLocationsXref {
     private Boolean isDefault ;
 
     @Column(name="is_active")
-    private Boolean isActive =true;
+    private Boolean active;
+
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -93,21 +94,7 @@ public class UserLocationsXref {
         this.userLocationName = userLocationName;
     }
 
-    public Boolean getDefault() {
-        return isDefault;
-    }
 
-    public void setDefault(Boolean aDefault) {
-        isDefault = aDefault;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 
     public Date getInsrtDttm() {
         return insrtDttm;
@@ -204,4 +191,23 @@ public class UserLocationsXref {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean getDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(Boolean aDefault) {
+        isDefault = aDefault;
+    }
+
+
+
 }
